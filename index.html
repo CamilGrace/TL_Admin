@@ -17,6 +17,12 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .logo {
+            max-width: 150px;
+            display: block;
+            margin: 0 auto 10px;
         }
         table {
             width: 100%;
@@ -46,79 +52,112 @@
 </head>
 <body>
     <div class="container">
-        <h2>Admin Dashboard</h2>
-        <h3>Pending Registrations</h3>
+        <img src="logo.png" alt="Website Logo" class="logo">
+        <h1>TulongLegal Admin Dashboard</h1>
+        
+        <h3>Pending Lawyer Registrations</h3>
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Contact Number</th>
                     <th>Email</th>
-                    <th>Role</th>
+                    <th>Roll Number</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="userTable">
+            <tbody id="lawyerTable">
                 <tr>
                     <td>John Doe</td>
+                    <td>+63 912 345 6789</td>
                     <td>john@example.com</td>
-                    <td>Lawyer</td>
+                    <td>LR123456</td>
                     <td>
-                        <button class="btn accept" onclick="acceptUser(this)">Accept</button>
-                        <button class="btn decline" onclick="declineUser(this)">Decline</button>
+                        <button class="btn accept" onclick="acceptLawyer(this)">Accept</button>
+                        <button class="btn decline" onclick="declineLawyer(this)">Decline</button>
                     </td>
                 </tr>
                 <tr>
                     <td>Jane Smith</td>
+                    <td>+63 923 456 7890</td>
                     <td>jane@example.com</td>
-                    <td>Client</td>
+                    <td>LR654321</td>
                     <td>
-                        <button class="btn accept" onclick="acceptUser(this)">Accept</button>
-                        <button class="btn decline" onclick="declineUser(this)">Decline</button>
+                        <button class="btn accept" onclick="acceptLawyer(this)">Accept</button>
+                        <button class="btn decline" onclick="declineLawyer(this)">Decline</button>
                     </td>
                 </tr>
             </tbody>
         </table>
         
-        <h3>Accepted Users</h3>
+        <h3>Accepted Lawyers</h3>
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Contact Number</th>
                     <th>Email</th>
-                    <th>Role</th>
+                    <th>Roll Number</th>
                 </tr>
             </thead>
-            <tbody id="acceptedUsers">
+            <tbody id="acceptedLawyers">
             </tbody>
         </table>
         
-        <h3>Declined Users</h3>
+        <h3>Declined Lawyers</h3>
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Contact Number</th>
                     <th>Email</th>
-                    <th>Role</th>
+                    <th>Roll Number</th>
                 </tr>
             </thead>
-            <tbody id="declinedUsers">
+            <tbody id="declinedLawyers">
+            </tbody>
+        </table>
+        
+        <h3>Registered Clients</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact Number</th>
+                    <th>Email</th>
+                    <th>Valid ID</th>
+                </tr>
+            </thead>
+            <tbody id="clientTable">
+                <tr>
+                    <td>Michael Brown</td>
+                    <td>+63 935 112 2334</td>
+                    <td>michael@example.com</td>
+                    <td>ID12345</td>
+                </tr>
+                <tr>
+                    <td>Sarah Wilson</td>
+                    <td>+63 945 556 7788</td>
+                    <td>sarah@example.com</td>
+                    <td>ID67890</td>
+                </tr>
             </tbody>
         </table>
     </div>
 
     <script>
-        function acceptUser(button) {
+        function acceptLawyer(button) {
             let row = button.closest('tr');
-            let acceptedTable = document.getElementById("acceptedUsers");
-            acceptedTable.innerHTML += `<tr><td>${row.cells[0].innerText}</td><td>${row.cells[1].innerText}</td><td>${row.cells[2].innerText}</td></tr>`;
+            let acceptedTable = document.getElementById("acceptedLawyers");
+            acceptedTable.innerHTML += `<tr><td>${row.cells[0].innerText}</td><td>${row.cells[1].innerText}</td><td>${row.cells[2].innerText}</td><td>${row.cells[3].innerText}</td></tr>`;
             alert(row.cells[0].innerText + ' has been accepted.');
             row.remove();
         }
         
-        function declineUser(button) {
+        function declineLawyer(button) {
             let row = button.closest('tr');
-            let declinedTable = document.getElementById("declinedUsers");
-            declinedTable.innerHTML += `<tr><td>${row.cells[0].innerText}</td><td>${row.cells[1].innerText}</td><td>${row.cells[2].innerText}</td></tr>`;
+            let declinedTable = document.getElementById("declinedLawyers");
+            declinedTable.innerHTML += `<tr><td>${row.cells[0].innerText}</td><td>${row.cells[1].innerText}</td><td>${row.cells[2].innerText}</td><td>${row.cells[3].innerText}</td></tr>`;
             alert(row.cells[0].innerText + ' has been declined.');
             row.remove();
         }
