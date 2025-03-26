@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .btn {
+            padding: 5px 10px;
+            margin-right: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .accept {
+            background-color: green;
+            color: white;
+        }
+        .decline {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        <h3>Pending Registrations</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="userTable">
+                <tr>
+                    <td>John Doe</td>
+                    <td>john@example.com</td>
+                    <td>Lawyer</td>
+                    <td>
+                        <button class="btn accept" onclick="acceptUser(this)">Accept</button>
+                        <button class="btn decline" onclick="declineUser(this)">Decline</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>jane@example.com</td>
+                    <td>Client</td>
+                    <td>
+                        <button class="btn accept" onclick="acceptUser(this)">Accept</button>
+                        <button class="btn decline" onclick="declineUser(this)">Decline</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Accepted Users</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody id="acceptedUsers">
+            </tbody>
+        </table>
+        
+        <h3>Declined Users</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody id="declinedUsers">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function acceptUser(button) {
+            let row = button.closest('tr');
+            let acceptedTable = document.getElementById("acceptedUsers");
+            acceptedTable.innerHTML += `<tr><td>${row.cells[0].innerText}</td><td>${row.cells[1].innerText}</td><td>${row.cells[2].innerText}</td></tr>`;
+            alert(row.cells[0].innerText + ' has been accepted.');
+            row.remove();
+        }
+        
+        function declineUser(button) {
+            let row = button.closest('tr');
+            let declinedTable = document.getElementById("declinedUsers");
+            declinedTable.innerHTML += `<tr><td>${row.cells[0].innerText}</td><td>${row.cells[1].innerText}</td><td>${row.cells[2].innerText}</td></tr>`;
+            alert(row.cells[0].innerText + ' has been declined.');
+            row.remove();
+        }
+    </script>
+</body>
+</html>
