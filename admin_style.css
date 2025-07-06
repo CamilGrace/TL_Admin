@@ -1,0 +1,217 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef1f5; /* Light background for dashboard body */
+    color: #333; /* Default dark text for content */
+    line-height: 1.6;
+    /* Remove centering for dashboard */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* min-height: 100vh; */
+}
+
+body.auth-page {
+    background-color: #001f3f; /* Navy Blue Background for auth */
+    color: #ffffff; /* Default white text */
+    /* Re-apply centering for auth pages */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* Padding around auth container */
+}
+
+a {
+    color: #0d6efd; /* Standard link blue */
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- Authentication Pages (Login/Register) --- */
+.auth-container {
+    background-color: #001f3f;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 850px;
+    display: flex;
+    align-items: center;
+    min-height: 480px;
+    overflow: hidden;
+}
+.auth-left {
+    flex: 1; padding-right: 40px; text-align: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    color: #ffffff;
+}
+.auth-right { flex: 1; padding-left: 40px; color: #ffffff;}
+.auth-container .logo { max-width: 150px; margin-bottom: 15px; }
+.auth-container h1 { margin-bottom: 10px; font-size: 1.5em; font-weight: 300; }
+.auth-container h2 { margin-bottom: 8px; font-size: 2em; font-weight: 600; text-align: left; }
+.auth-container p { color: #bdc3c7; margin-bottom: 25px; font-size: 0.95em; text-align: left; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 6px; font-weight: 500; font-size: 0.9em; }
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="text"] {
+    width: 100%; padding: 12px; border: 1px solid #555; border-radius: 5px;
+    background-color: #003366; color: #ffffff; font-size: 1em; /* Darker input background */
+}
+.form-group input::placeholder { color: #99aabb; }
+.auth-container .btn-primary {
+    display: block; width: 100%; padding: 12px;
+    /* background: linear-gradient(to right, #005f73, #0a9396); */ /* Teal gradient */
+    background-color: #005f73; /* Adjust button color if needed */
+    color: #ffffff; /* White text on button */
+    border: none; border-radius: 5px; cursor: pointer; font-size: 1em; font-weight: bold;
+    transition: background-color 0.3s ease; margin-top: 10px; text-transform: uppercase;
+}
+.auth-container .btn-primary:hover { background-color: #0a9396; }
+.auth-container .link { display: block; text-align: center; margin-top: 15px; color: #94d2bd; font-size: 0.9em; } /* Teal link */
+.error-message { color: #ff8a8a; font-size: 0.85em; margin-top: 5px; min-height: 1.2em; }
+
+/* --- Dashboard Page --- */
+.dashboard-container {
+    display: flex; /* Changed from none to flex */
+    width: 100%;
+    min-height: 100vh; /* Ensure takes full height */
+}
+/* Hide dashboard container initially if needed via JS/Auth state */
+body:not(.dashboard-active) .dashboard-container {
+     display: none;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background-color: #001f3f; /* Navy */
+    color: #ffffff;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    flex-shrink: 0; /* Prevent shrinking */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Subtle shadow */
+    z-index: 100; /* Keep above content */
+}
+.sidebar .logo { max-width: 120px; margin: 0 auto 20px auto; display: block; }
+.sidebar h2 { font-size: 1.1em; text-align: center; margin-bottom: 25px; color: #eee; font-weight: 300; padding: 0 10px;}
+.sidebar nav ul { list-style: none; padding: 0; margin: 0;}
+.sidebar nav li a {
+    display: flex; /* Use flex for icon + text alignment */
+    align-items: center;
+    padding: 12px 20px;
+    color: #bdc3c7; /* Light grey text */
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-left-color 0.2s ease;
+    font-size: 0.95em;
+    border-left: 4px solid transparent; /* Active indicator */
+}
+.sidebar nav li a i { /* Style for Font Awesome icons */
+    margin-right: 12px; /* Space between icon and text */
+    font-size: 1.1em;
+    width: 20px; /* Fixed width for alignment */
+    text-align: center;
+}
+.sidebar nav li a:hover,
+.sidebar nav li a.active {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border-left-color: #007bff; /* Primary Blue indicator */
+}
+.sidebar .logout-section { margin-top: auto; padding: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.sidebar #auth-status { font-size: 0.85em; text-align: center; word-break: break-all; color: #bdc3c7;}
+.sidebar #auth-status span { display: block; margin-bottom: 10px; font-weight: 500; }
+.sidebar #logout-button {
+     display: block; width: 100%; padding: 10px; background-color: rgba(220, 53, 69, 0.8); /* Semi-transparent red */
+     color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.2s ease;
+}
+.sidebar #logout-button:hover { background-color: #dc3545; } /* Solid red */
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    padding: 30px; /* More padding */
+    margin-left: 240px; /* Account for sidebar width */
+    background-color: #f8f9fa;
+    height: 100vh;
+    overflow-y: auto;
+}
+.main-content h1 { color: #001f3f; margin-bottom: 25px; font-size: 2em; }
+.section { display: none; margin-top: 20px; }
+.section.active { display: block; }
+.section h3 {
+    color: #001f3f; margin-top: 30px; margin-bottom: 18px; padding-bottom: 10px;
+    border-bottom: 1px solid #dee2e6; font-size: 1.5em; font-weight: 500;
+}
+.section h3:first-child { margin-top: 0; }
+
+/* Table Styles */
+.table-responsive { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9em; background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.08); border-radius: 5px; overflow: hidden; }
+th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e9ecef; vertical-align: middle; }
+th { background-color: #e9ecef; color: #495057; font-weight: 600; text-transform: uppercase; font-size: 0.8em; letter-spacing: 0.5px; }
+tbody tr:hover { background-color: #f1f3f5; }
+td .btn { margin: 2px; } /* Spacing for buttons */
+
+/* Button Styles */
+.btn {
+    padding: 6px 12px; margin-right: 5px; border: none; border-radius: 4px;
+    cursor: pointer; font-size: 0.85em; transition: opacity 0.2s ease; font-weight: 500;
+}
+.btn:hover { opacity: 0.85; }
+.btn.accept { background-color: #198754; color: white; } /* Darker Green */
+.btn.decline { background-color: #dc3545; color: white; } /* Red */
+.btn.view { background-color: #0d6efd; color: white; } /* Blue */
+
+/* Modal Styles */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
+.modal-content { background-color: #fff; margin: auto; padding: 25px; border-radius: 8px; width: 90%; max-width: 700px; position: relative; max-height: 90vh; overflow-y: auto; color: #333; }
+.modal-close { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
+.modal-close:hover, .modal-close:focus { color: black; text-decoration: none; }
+.modal h2 { margin-top: 0; color: #001f3f; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
+.modal p { color: #555; margin: 15px 0 5px 0; }
+.modal img { display: block; max-width: 90%; height: auto; margin: 5px auto 15px auto; border: 1px solid #ddd; }
+.modal pre { background-color: #f8f9fa; padding: 15px; border-radius: 4px; border: 1px solid #eee; white-space: pre-wrap; word-wrap: break-word; font-family: Consolas, Monaco, monospace; font-size: 0.9em; line-height: 1.6; margin-bottom: 15px; }
+
+/* Responsive Adjustments */
+/* ... Keep existing @media (max-width: 768px) for stacking tables ... */
+@media (max-width: 768px) {
+    .auth-container { flex-direction: column; padding: 20px; min-height: auto; }
+    .auth-left { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding: 20px 0; margin-bottom: 20px; }
+    .auth-right { padding: 0; }
+    table, thead, tbody, th, td, tr { display: block; }
+    thead tr { position: absolute; top: -9999px; left: -9999px; }
+    tr { border: 1px solid #ccc; margin-bottom: 10px; }
+    td { border: none; border-bottom: 1px solid #eee; position: relative; padding-left: 45%; text-align: right; min-height: 40px; display: flex; align-items: center; justify-content: flex-end; }
+    td:before { position: absolute; left: 10px; width: 40%; padding-right: 10px; white-space: nowrap; content: attr(data-label); font-weight: bold; text-align: left; color: #555;}
+     .modal-content { width: 95%; padding: 15px; max-height: 90vh; }
+}
+
+@media (max-width: 992px) {
+    .sidebar { width: 70px; }
+    .sidebar .logo, .sidebar h2, .sidebar .logout-section span { display: none; }
+    .sidebar nav li a { text-align: center; padding: 15px 0; border-left: none; border-top: 4px solid transparent; }
+    .sidebar nav li a .nav-text { display: none; }
+    .sidebar nav li a i { margin-right: 0; font-size: 1.6em; } /* Larger icons when collapsed */
+     .sidebar nav li a:hover, .sidebar nav li a.active { border-top-color: #007bff; border-left-color: transparent; } /* Top border active */
+    .sidebar .logout-section { padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.1);}
+     .sidebar #logout-button { width: auto; border-radius: 50%; padding: 10px; margin: 0 auto; display: block; } /* Make logout a circle icon */
+     .sidebar #logout-button i { /* Add Font Awesome logout icon */ margin: 0;}
+     .sidebar #logout-button .logout-text { display: none; } /* Hide text */
+    .main-content { margin-left: 70px; }
+}

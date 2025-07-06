@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin Dashboard - TulongLegal</title>
+    <link rel="stylesheet" href="admin_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <img src="logo.png" alt="TulongLegal Logo" class="logo" />
+            <h2>TulongLegal Admin</h2>
+            <nav>
+                <ul>
+                    <!-- Links for both Lawyer and Client sections -->
+                    <li><a href="#lawyerApprovalSection" class="active"><i class="fas fa-gavel"></i> <span class="nav-text">Lawyer Approval</span></a></li>
+                    <li><a href="#clientVerificationSection"><i class="fas fa-user-check"></i> <span class="nav-text">Client Verification</span></a></li>
+                </ul>
+            </nav>
+            <div class="logout-section">
+                 <div id="auth-status">
+                    <span id="user-email">Loading...</span>
+                    <button id="logout-button" style="display: none;">
+                        <i class="fas fa-sign-out-alt"></i> <span class="logout-text">Logout</span>
+                    </button>
+                 </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <h1>Admin Dashboard</h1>
+
+            <!-- Lawyer Registration Approval Section -->
+            <div id="lawyerApprovalSection" class="section active">
+                <h3>Pending Lawyer Registrations</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th>Lawyer Name</th><th>Email</th><th>Submitted</th><th>IBP ID</th><th>Face Photo</th><th>Details</th><th>Action</th></tr>
+                        </thead>
+                        <tbody id="pendingLawyersTable"></tbody>
+                    </table>
+                </div>
+
+                <h3>Accepted Lawyers</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead><tr><th>Lawyer Name</th><th>Email</th><th>Law Firm</th><th>Accepted At</th><th>Accepted By</th></tr></thead>
+                        <tbody id="acceptedLawyersTable"></tbody>
+                    </table>
+                </div>
+
+                <h3>Declined Lawyers</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead><tr><th>Lawyer Name</th><th>Email</th><th>Declined At</th><th>Declined By</th><th>Reason</th></tr></thead>
+                        <tbody id="declinedLawyersTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- *** RESTORED: Client Verification Section *** -->
+            <div id="clientVerificationSection" class="section">
+                <h3>Pending Client Verifications</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead><tr><th>Client Name</th><th>Submitted</th><th>ID Type</th><th>ID Img</th><th>Face Img</th><th>Details</th><th>Action</th></tr></thead>
+                        <tbody id="pendingClientsTable"></tbody>
+                    </table>
+                </div>
+
+                <h3>Accepted Client Verifications</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead><tr><th>Client Name</th><th>ID Type</th><th>Verified At</th><th>Verified By</th></tr></thead>
+                        <tbody id="acceptedClientsTable"></tbody>
+                    </table>
+                </div>
+
+                 <h3>Declined Client Verifications</h3>
+                 <div class="table-responsive">
+                     <table>
+                         <thead><tr><th>Client Name</th><th>ID Type</th><th>Declined At</th><th>Declined By</th><th>Reason</th></tr></thead>
+                         <tbody id="declinedClientsTable"></tbody>
+                     </table>
+                 </div>
+            </div>
+            <!-- *** --- *** -->
+        </main>
+    </div>
+
+    <!-- Modal for viewing details -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">×</span>
+            <h2 id="modalTitle">Details</h2>
+            <pre id="modalDetails"></pre>
+            <hr>
+            <div id="modalImages">
+                <p><strong>ID Image:</strong></p>
+                <img id="modalIdImage" src="placeholder.png" alt="ID Image"/>
+                <p><strong>Face Photo:</strong></p>
+                <img id="modalFaceImage" src="placeholder.png" alt="Face Image"/>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script src="config.js"></script>
+    <script defer src="admin_auth.js"></script>
+    <script defer src="admin_dashboard.js"></script>
+</body>
+</html>

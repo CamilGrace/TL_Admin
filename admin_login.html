@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin Login - TulongLegal</title>
+    <link rel="stylesheet" href="admin_style.css"> <!-- Correct path -->
+</head>
+<body class="auth-page"> <!-- Add class to apply auth styles -->
+    <div class="auth-container">
+        <div class="auth-left">
+            <img src="logo.png" alt="TulongLegal Logo" class="logo" /> <!-- Correct path -->
+            <h1>TulongLegal</h1>
+            <p>Admin Portal</p>
+        </div>
+        <div class="auth-right">
+            <h2>Welcome Back</h2> <!-- Changed Header -->
+            <p>Please login to the Admin Dashboard.</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                <div class="error-message" id="login-error"></div>
+                <button type="submit" class="btn-primary">Login</button> <!-- Button inside form -->
+            </form>
+            <!-- <a href="#" class="link">Forgotten Your Password?</a>  -->
+            <a href="admin_register.html" class="link">Create Admin Account</a>
+        </div>
+    </div>
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script> 
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script><!-- Keep Firestore if needed by auth script -->
+<!-- Auth script ONLY -->
+<script src="config.js"></script>
+<script defer src="admin_auth.js"></script> <!-- Correct path -->
+
+</body>
+</html>
