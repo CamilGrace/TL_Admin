@@ -1,15 +1,13 @@
 // --- Firebase Configuration ---
 
 // --- Initialize Firebase ---
-if (typeof firebaseConfig !== 'undefined') {
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
-} else {
-    // This will run if config.js is missing
-    console.error("Firebase config is missing. Ensure config.js is loaded.");
-    alert("CRITICAL ERROR: Firebase configuration not found. The application cannot start.");
+if (!firebase.apps.length) {
+    // init.js already calls initializeApp, but this is a good safety check.
+    // If running locally, you might need a local init.js or manual config.
+    // For deployment, this will work.
+    firebase.initializeApp(firebaseConfig);
 }
+
 
 const auth = firebase.auth();
 const db = firebase.firestore();
